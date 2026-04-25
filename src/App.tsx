@@ -57,7 +57,7 @@ function IsHumanCheck() {
 }
 
 function Home() {
-  const { isAuthenticated, isLoading, logout } = useHumanity();
+  const { isAuthenticated, isLoading } = useHumanity();
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -65,40 +65,26 @@ function Home() {
     }
   }, [isAuthenticated]);
 
-  if (isLoading) return (
+  if (isLoading || isAuthenticated) return (
     <div className="screen fade-in">
       <div className="spinner-lg"></div>
-      <p className="loading-text">Loading Peacock Hill...</p>
+      <p className="loading-text">Connecting to Pikock...</p>
     </div>
   );
 
-  if (!isAuthenticated) {
-    return (
-      <div className="screen fade-in">
-        <div className="container">
-          <img src="/peacockhill-logo.png" alt="Peacock Hill Logo" className="logo bounce" />
-          <h1 className="title gradient-text">Welcome to Peacock Hill</h1>
-          <p className="subtitle">Your gateway to secure, biometrically verified identity management. Experience the future of authentication.</p>
-          <div className="connect-wrapper">
-            <HumanityConnect
-              mode="redirect"
-              scopes={['openid', 'identity:read']}
-              onError={(err) => console.error(err)}
-            />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="screen fade-in">
-      <div className="container dashboard">
-        <img src="/peacockhill-logo.png" alt="Peacock Hill Logo" className="logo-small" />
-        <h1 className="title">Member Dashboard</h1>
-        <p className="subtitle">Secure access to your private identity vault.</p>
-        <IsHumanCheck />
-        <button className="btn-ghost" onClick={logout}>Secure Logout</button>
+      <div className="container">
+        <img src="/peacockhill-logo.png" alt="Pikock Logo" className="logo bounce" />
+        <h1 className="title gradient-text">Welcome to Pikock</h1>
+        <p className="subtitle">Your gateway to secure, biometrically verified identity management. Experience the future of authentication.</p>
+        <div className="connect-wrapper">
+          <HumanityConnect
+            mode="redirect"
+            scopes={['openid', 'identity:read']}
+            onError={(err) => console.error(err)}
+          />
+        </div>
       </div>
     </div>
   );
@@ -116,7 +102,7 @@ function Callback() {
   return (
     <div className="screen fade-in">
       <div className="spinner-lg"></div>
-      <p className="loading-text">Authenticating with Peacock Hill...</p>
+      <p className="loading-text">Authenticating with Pikock...</p>
     </div>
   );
 }
