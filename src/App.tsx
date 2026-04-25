@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import {
   HumanityConnect,
   useHumanity,
@@ -59,6 +59,12 @@ function IsHumanCheck() {
 function Home() {
   const { isAuthenticated, isLoading, logout } = useHumanity();
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      window.location.href = 'https://pikock.vercel.app/';
+    }
+  }, [isAuthenticated]);
+
   if (isLoading) return (
     <div className="screen fade-in">
       <div className="spinner-lg"></div>
@@ -100,11 +106,12 @@ function Home() {
 
 function Callback() {
   const { isAuthenticated, isLoading } = useHumanity();
-  const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLoading && isAuthenticated) navigate('/', { replace: true });
-  }, [isAuthenticated, isLoading, navigate]);
+    if (!isLoading && isAuthenticated) {
+      window.location.href = 'https://pikock.vercel.app/';
+    }
+  }, [isAuthenticated, isLoading]);
 
   return (
     <div className="screen fade-in">
