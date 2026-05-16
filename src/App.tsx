@@ -25,7 +25,7 @@ function Home() {
     <div className="screen fade-in">
       <div className="container">
         <img src="/peacockhill-logo.png" alt="Pikock Logo" className="logo bounce" />
-        <h1 className="title gradient-text">Welcome to Pikock</h1>
+        <h1 className="title gradient-text">Welcome to Peacock Hill</h1>
         <p className="subtitle">Your gateway to secure, biometrically verified identity management. Experience the future of authentication.</p>
         <div className="connect-wrapper">
           <HumanityConnect
